@@ -122,7 +122,7 @@ if predict_button:
             st.success("Prediction complete!")
             
             # Create columns for prediction display
-            pred_col1, pred_col2 = st.columns([1, 1])
+            pred_col1 = st.columns(1)[0]
             
             with pred_col1:
                 # Display the prediction with a metric widget
@@ -130,16 +130,7 @@ if predict_button:
                     label="Predicted Post-Test Score",
                     value=f"{prediction:.1f}",
                     delta=f"{prediction - pretest:.1f} from pre-test"
-                )
-                
-                # Context about the prediction
-                if prediction > pretest:
-                    st.info(f"The model predicts an improvement of {prediction - pretest:.1f} points from the pre-test score.")
-                elif prediction < pretest:
-                    st.warning(f"The model predicts a decrease of {pretest - prediction:.1f} points from the pre-test score.")
-                else:
-                    st.info("The model predicts no change from the pre-test score.")
-        
+                )        
                 
         except Exception as e:
             st.error(f"Error making prediction: {e}")
